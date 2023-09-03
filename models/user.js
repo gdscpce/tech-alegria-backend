@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
     validate: [validator.isEmail, "Please provide email in correct format !"],
     unique: true,
   },
+  collegeName: {
+    type: String,
+    required: [true, "Please provide College Name"],
+  },
   password: {
     type: String,
     required: [true, "Please provide a password"],

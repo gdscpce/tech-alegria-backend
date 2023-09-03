@@ -10,11 +10,13 @@ require("dotenv").config();
 //sign up controller
 exports.signup = BigPromise(async (req, res, next) => {
   //extract data
-  const { name, email, password } = req.body;
+  const { name, email, password, collegeName } = req.body;
 
   // data validation
-  if (!name || !email || !password) {
-    return next(new customError("Name, Email and Password are mandatory !"));
+  if (!name || !email || !password || !collegeName) {
+    return next(
+      new customError("Name, Email ,CollegeName and  Password are mandatory !")
+    );
   }
 
   //saving document to db
@@ -22,6 +24,7 @@ exports.signup = BigPromise(async (req, res, next) => {
     name,
     email,
     password,
+    collegeName,
   })
     .then((user) => {
       cookieToken(user, res);
