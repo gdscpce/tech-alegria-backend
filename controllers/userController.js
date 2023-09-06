@@ -18,7 +18,12 @@ exports.signup = BigPromise(async (req, res, next) => {
       new customError("Name, Email ,CollegeName and  Password are mandatory !")
     );
   }
-
+  const user = await User.findOne({ email });
+  if (user) {
+    return res
+      .status(500)
+      .json({ success: false, message: "Email already registered" });
+  }
   //saving document to db
   User.create({
     name,
