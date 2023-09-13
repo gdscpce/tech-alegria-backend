@@ -45,7 +45,7 @@ exports.initalizeLeaderboardByUserID = BigPromise(async (req, res, next) => {
 
 exports.updateScoreByID = BigPromise(async (req, res, next) => {
   const { userId, problemId, startTime, timeSubmitted, score } = req.body;
-  if (!userId || !problemId || !timeSubmitted || !score || !startTime) {
+  if (!userId || !problemId || !timeSubmitted || !score) {
     return res
       .status(400)
       .json({ success: false, message: "All fields are mandatory" });
