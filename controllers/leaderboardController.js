@@ -57,7 +57,7 @@ exports.updateScoreByID = BigPromise(async (req, res, next) => {
   let data = await Leaderboard.findOne({ userId });
   if (data) {
     data.score = data.score + Number(score);
-    data.penalty = data.penalty + Number(timeSubmitted) / 60;
+    data.penalty = Number(data.penalty) + Number(timeSubmitted) / 60;
     data.time.push({ problemId, submissionTime });
     await data.save();
     res

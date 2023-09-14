@@ -32,12 +32,14 @@ const home = require("./routes/home");
 const user = require("./routes/user");
 const problem = require("./routes/problem");
 const leaderboard = require("./routes/leaderboard");
+const problemState = require("./routes/problemState");
 
 //router middlewares
 app.use("/api/v1", home);
 app.use("/api/v1", user);
 app.use("/api/v1", problem);
 app.use("/api/v1", leaderboard);
+app.use("/api/v1", problemState);
 
 //passport middlwares
 app.use(passport.initialize());
