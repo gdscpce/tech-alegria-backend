@@ -120,10 +120,10 @@ exports.getUnlockRangeByUserID = BigPromise(async (req, res, next) => {
   let range = 1,
     userScocre = data[0].score;
 
-  if (userScocre >= 100) range = 2;
-  else if (userScocre >= 200) range = 3;
-  else if (userScocre >= 300) range = 4;
-  else if (userScocre >= 400) range = 5;
+  if (userScocre == 100) range = 2;
+  else if (userScocre == 200) range = 3;
+  else if (userScocre == 300) range = 4;
+  else if (userScocre == 400) range = 5;
 
   res.status(200).json({
     success: true,
