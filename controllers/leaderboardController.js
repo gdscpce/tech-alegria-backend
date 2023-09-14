@@ -50,7 +50,7 @@ exports.updateScoreByID = BigPromise(async (req, res, next) => {
       .status(400)
       .json({ success: false, message: "All fields are mandatory" });
   }
-  let submissionTime = Math.abs(timeSubmitted - startTime);
+  let submissionTime = Math.abs(timeSubmitted - startTime) / 60;
   let data = await Leaderboard.findOne({ userId });
   if (data) {
     data.score = data.score + Number(score);
