@@ -31,6 +31,10 @@ const leaderboardSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  submissionTime: {
+    type: Number,
+    default: 0,
+  },
   score: {
     type: Number,
     default: 0,

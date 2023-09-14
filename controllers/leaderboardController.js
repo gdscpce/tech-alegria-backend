@@ -45,13 +45,14 @@ exports.initalizeLeaderboardByUserID = BigPromise(async (req, res, next) => {
 });
 
 exports.updateScoreByID = BigPromise(async (req, res, next) => {
-  const { userId, problemId, startTime, timeSubmitted, score } = req.body;
+  const { userId, problemId, startTime, submissionTime, timeSubmitted, score } =
+    req.body;
   if (!userId || !problemId || !timeSubmitted || !score) {
     return res
       .status(400)
       .json({ success: false, message: "All fields are mandatory" });
   }
-  let submissionTime = Math.abs(Number(timeSubmitted) - Number(startTime)) / 60;
+  // let submissionTime = (Number(timeSubmitted) - Number(startTime)) / 60;
   let user = await User.findById(userId);
   let data = await Leaderboard.findOne({ userId });
   if (data) {
