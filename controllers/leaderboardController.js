@@ -105,7 +105,7 @@ exports.getAllLeaderboardDetails = BigPromise(async (req, res, next) => {
 });
 
 exports.getScoreByUserID = BigPromise(async (req, res, next) => {
-  const data = await Leaderboard.find({ userId: req.params.userId });
+  const data = await Leaderboard.findOne({ userId: req.params.userId });
   if (!data) {
     return res.status(200).json({
       success: true,
