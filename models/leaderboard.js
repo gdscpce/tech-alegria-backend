@@ -23,6 +23,10 @@ const leaderboardSchema = new mongoose.Schema({
     type: String,
     required: [true],
   },
+  userName: {
+    type: String,
+    required: [true],
+  },
   penalty: {
     type: Number,
     default: 0,

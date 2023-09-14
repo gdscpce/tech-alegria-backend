@@ -16,6 +16,7 @@
     createdAt
 */
 const Leaderboard = require("../models/leaderboard");
+const User = require("../models/user");
 const BigPromise = require("../middlewares/bigPromise");
 const customError = require("../utils/customError");
 
@@ -51,6 +52,7 @@ exports.updateScoreByID = BigPromise(async (req, res, next) => {
       .json({ success: false, message: "All fields are mandatory" });
   }
   let submissionTime = Math.abs(timeSubmitted - startTime) / 60;
+  let user = await User.findById(userId);
   let data = await Leaderboard.findOne({ userId });
   if (data) {
     data.score = data.score + Number(score);
@@ -63,6 +65,7 @@ exports.updateScoreByID = BigPromise(async (req, res, next) => {
   } else {
     Leaderboard.create({
       userId,
+      userName: user.name,
       score,
       penalty: timeSubmitted,
       time: [
