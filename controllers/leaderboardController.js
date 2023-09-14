@@ -110,3 +110,24 @@ exports.getScoreByUserID = BigPromise(async (req, res, next) => {
     score: data[0].score,
   });
 });
+
+exports.getUnlockRangeByUserID = BigPromise(async (req, res, next) => {
+  const data = await Leaderboard.find({ userId: req.params.userId });
+  if (!data) {
+    return next(new customError("No problem found with this id", 404));
+  }
+
+  let range = 1,
+    userScocre = data[0].score;
+
+  if (userScocre >= 100) range = 2;
+  else if (userScocre >= 200) range = 3;
+  else if (userScocre >= 300) range = 4;
+  else if (userScocre >= 400) range = 5;
+
+  res.status(200).json({
+    success: true,
+    score: data[0].score,
+    unlockTill: range,
+  });
+});
